@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
 // recebendo os dados com a port e a String de conexão com o database //
 
 const usuarioDataBase = 'LucasPetris'
-const senhaDataBase = encodeURIComponent('senhaDatabase')
+const senhaDataBase = encodeURIComponent('senhaMONGODB')
 
 mongoose
 
