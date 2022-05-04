@@ -1,6 +1,7 @@
 // configurando os paramêtros iniciais //
 
 const express = require('express')
+const { json } = require('express/lib/response')
 const mongoose = require('mongoose')
 const app = express()
 
@@ -17,73 +18,49 @@ app.use(
 
 app.use(express.json())
 
-// routes //
+    // Rota inicial HTTP //
 
-app.post('/universities', async (req, res) => {
+app.get('/universities', (req, res) => {
 
-const{id_Universidade, nameUniversidade, countryUniversidade, stateUniversidade} = req.body
-
-if(!id_Universidade) {
-    res.status(422).json({ error: 'O id deve ser encontrado'})
-}
-
-// tratamento de erros, campos não encontrados //
-
-if(!nameUniversidade) {
-    res.status(422).json({ error: 'O nome da universidade deve ser encontrado'})
-}
-
-if(!countryUniversidade) {
-    res.status(422).json({ error: 'O país da universidade deve ser encontrado'})
-}
-
-if(!stateUniversidade) {
-    res.status(422).json({ error: 'O estado da universidade deve ser encontrado'})
-}
-
-// ----------------------------------------- //
-
-const universities = {
-
-    id_Universidade,
-    nameUniversidade,
-    countryUniversidade,
-    stateUniversidade
-}
-
-try {
-
-    // Criação dos dados //
-    await Universities.create(universities)
-
-    res.status(201).json({message: 'Universidade inserida no sistema com sucesso!'})
-
-} catch(error) {
-    res.status(500).json({error: error})
-
-    }
-
-})
- 
-// ---------------------- //
-
-// Rota inicial HTTP //
-
-app.get('/', (req, res) => {
-
-    // mostrar req teste //
+    // Mostrar req teste //
 
     res.json({message: 'Requisição completa'})
+}
+
+    // Routes API //
+
+app.post('/universities', async(req, res) => {
+
+    // req.body //
+
+    const {alpha_two_code, web_pages, name, country, domains, state} = req.body
+
+    const universities = {
+        alpha_two_code,
+        web_pages,
+        name,
+        country,
+        domains,
+        state
+    }
+
+    try {
+
+        await Universities.create(json)
+
+        res.status(201).json({message: 'Universidade Inserida com Sucesso'})
+
+    } catch(error) {
+
+        res.status(500).json({error: error})
+    }
+    
 })
 
-// ---------------------- //
-
-
-
-// recebendo os dados com a port e a String de conexão com o database //
+// Recebendo os dados com a port e a String de conexão com o database //
 
 const usuarioDataBase = 'LucasPetris'
-const senhaDataBase = encodeURIComponent('senhaMONGODB')
+const senhaDataBase = encodeURIComponent('40aL0Al1VARMVEbX')
 
 mongoose
 
