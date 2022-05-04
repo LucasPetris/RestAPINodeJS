@@ -60,7 +60,7 @@ app.post('/universities', async(req, res) => {
 // Recebendo os dados com a port e a String de conexão com o database //
 
 const usuarioDataBase = 'LucasPetris'
-const senhaDataBase = encodeURIComponent('40aL0Al1VARMVEbX')
+const senhaDataBase = encodeURIComponent('---')
 
 mongoose
 
