@@ -78,7 +78,7 @@ try {
     }
 
     res.status(200).json(universities)
-    
+
 } catch(error) {
     res.status(500).json({error: error})
 
@@ -112,7 +112,8 @@ router.path('/universities/:id', async(req, res) => {
         }
 
         res.status(200).json(universities)
-    }catch(error) {
+
+    } catch(error) {
         res.status(500).json({ error: error })
     }
 })

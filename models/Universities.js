@@ -1,8 +1,6 @@
 const mongoose = require('mongoose')
 
 const Universities = mongoose.model('Universities', {
-
-
     id_Universities: Number,
     name_Universities: String,
     country: String,
