@@ -5,21 +5,23 @@ const { json } = require('express/lib/response')
 const mongoose = require('mongoose')
 const app = express()
 
- // Rota teste //
+// Rota teste //
 
  app.get('/universities', (req, res) => {
 
-    // Mostrar req teste //
+// Mostrar Req teste //
 
     res.json({message: 'Requisição finalizada'})
 
 })
 
+// Rotas da API //
+
 const universitiesRoutes = require('./routes/universitiesRoutes')
 
 app.use('/universities', universitiesRoutes)
 
-// padrão JSON para leitura dos dados //
+// Padrão JSON para leitura dos dados //
 
 app.use(
 
@@ -33,7 +35,7 @@ app.use(express.json())
 // Recebendo os dados com a port e a String de conexão com o database //
 
 const usuarioDataBase = 'LucasPetris'
-const senhaDataBase = encodeURIComponent('---')
+const senhaDataBase = encodeURIComponent('40aL0Al1VARMVEbX')
 
 mongoose
 

@@ -10,6 +10,7 @@ const Universities = mongoose.model('Universities', {
     alpha_two_code: String,
     web_pages: String,
     domains: String
+    
 })
 
 module.exports = Universities

@@ -1,20 +1,24 @@
  const router = require('express').Router()
 
+const res = require('express/lib/response')
  const Universities = require('../models/Universities')
  
-    // Routes API //
+// Routes API //
 
-app.post('/', async(req, res) => {
+router.post('/', async(req, res) => {
 
-    // req.body //
+// Criação dos parametros do Req.body //
 
     const {alpha_two_code, web_pages, name, country, domains, state} = req.body
 
-    // Tratamento de erros //
+// Tratamento de erros //
 
     if(!name) {
         
         res.status(422).json({error: ' O nome é obrigatório!'})
+    
+    return
+
     }
 
     const universities = {
@@ -24,11 +28,12 @@ app.post('/', async(req, res) => {
         country,
         domains,
         state
+
     }
 
     try {
 
-        // Criando os dados //
+// Criando os dados //
 
         await Person.create(universities)
 
@@ -41,6 +46,75 @@ app.post('/', async(req, res) => {
         res.status(500).json({error: error})
     }
     
+})
+
+// Leitura dos dados //
+
+router.get('/', async (req, res) => {
+
+    try {
+
+        const universities = await Universities.find()
+
+        res.status(200).json(universities)
+
+    } catch(error) {
+        res.status(500).json({error: error})
+    }
+})
+
+// Filtragem de Busca por Id da Universidade //
+
+router.get('/:id', async (req, res) => {
+
+    const id = req.params.id
+
+try {
+    const universities = await Universities.findOne({_id: id})
+
+    if(!person) {
+        res.status(422).json({message: 'O id da universidade não foi encontrada'})
+        return
+    }
+
+    res.status(200).json(universities)
+    
+} catch(error) {
+    res.status(500).json({error: error})
+
+}
+
+})
+
+// Update - atualização de dados (PUT)
+
+router.path('/universities/:id', async(req, res) => {
+
+    const id = req.params.id
+
+    const { web_pages, name, domains } = req.body
+
+    const universities = {
+        web_pages,
+        name,
+        domains
+    }
+
+    try {
+
+        const updateUniversities = await universities.updateOne({_id: id}, universities)
+
+        console.log(updateUniversities)
+
+        if(updateUniversities.matchedCount === 0) {
+            res.status(422).json({ message: 'A universidade não foi encontrada'})
+            
+        }
+
+        res.status(200).json(universities)
+    }catch(error) {
+        res.status(500).json({ error: error })
+    }
 })
 
 module.exports = router
