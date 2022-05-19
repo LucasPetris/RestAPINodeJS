@@ -35,7 +35,7 @@ app.use(express.json())
 // Recebendo os dados com a port e a String de conexão com o database //
 
 const usuarioDataBase = 'LucasPetris'
-const senhaDataBase = encodeURIComponent('---')
+const senhaDataBase = encodeURIComponent('1YjthH2zcfE248Gt')
 
 mongoose
 

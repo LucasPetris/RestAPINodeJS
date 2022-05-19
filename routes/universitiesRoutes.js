@@ -88,7 +88,7 @@ try {
 
 // Update - atualização de dados (PUT)
 
-router.path('/universities/:id', async(req, res) => {
+router.patch('/universities/:id', async(req, res) => {
 
     const id = req.params.id
 
