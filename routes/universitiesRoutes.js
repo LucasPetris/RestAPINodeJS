@@ -35,7 +35,7 @@ router.post('/', async(req, res) => {
 
 // Criando os dados //
 
-        await Person.create(universities)
+        await Universities.create(universities)
 
         await Universities.create(json)
 
@@ -72,7 +72,7 @@ router.get('/:id', async (req, res) => {
 try {
     const universities = await Universities.findOne({_id: id})
 
-    if(!person) {
+    if(!universities) {
         res.status(422).json({message: 'O id da universidade não foi encontrada'})
         return
     }
