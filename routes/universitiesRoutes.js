@@ -1,15 +1,15 @@
- const router = require('express').Router()
-
+const router = require('express').Router()
+const req = require('express/lib/request')
 const res = require('express/lib/response')
- const Universities = require('../models/Universities')
+const Universities = require('../models/Universities')
+
+const axios = require("axios");
+const getUrl = "http://universities.hipolabs.com/search?country=uruguay";
+const log = (res) => console.log(res.data);
  
 // Routes API //
 
 router.post('/', async(req, res) => {
-
-// Criação dos parametros do Req.body //
-
-    const {alpha_two_code, web_pages, name, country, domains, state} = req.body
 
 // Tratamento de erros //
 
@@ -30,6 +30,10 @@ router.post('/', async(req, res) => {
         state
 
     }
+
+    const {alpha_two_code, web_pages, name, country, domains, state} = req.universities
+
+    const createPost = (getUrl, universities) => axios.post(getUrl, universities).then(log).catch(log)
 
     try {
 
