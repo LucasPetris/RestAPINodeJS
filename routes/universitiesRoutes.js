@@ -118,4 +118,30 @@ router.patch('/universities/:id', async(req, res) => {
     }
 })
 
+// Delete - deletar dados //
+
+router.delete('/universities/:id', async(req, res) => {
+
+    const id = req.params.id
+
+    const universities = await Universities.findOne({_id: id})
+
+    if(!universities) {
+        res.status(422).json({message: 'A universidade não foi encontrada'})
+    return 
+    
+    }
+
+    try {
+
+        await Universities.deleteOne({_id: id})
+
+        res.status(200).json({message: 'A universidade foi removida'})
+        
+    } catch (error) {
+        res.status(500).json({ error: error })
+
+    }
+})
+
 module.exports = router
