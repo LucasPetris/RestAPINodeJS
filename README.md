@@ -12,9 +12,9 @@
 
 <h2> Conexão com o DBA MongoDb </h2>
 
-<p> Para conseguir autenticação corretamente precisamos inserir o nome de usuário e a password que foi cadastrada no MongoDb </p>
+<p> Para conseguir autenticação corretamente precisamos inserir o nome de usuário e o password que foi cadastrado no MongoDb </p>
 
-<h2> Alterando as variaveis usuario e senha no arquivo index.js </h2>
+<h2> Alterando as variáveis usuario e senha no arquivo index.js </h2>
 
 <ul>
   
